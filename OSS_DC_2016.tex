@@ -32,14 +32,14 @@
 
 \begin{document}
 
-\title*{Quantitative analysis of performance in key parameter of code review - Defects Individuation.}
+\title*{A Quantitative Analysis of Performance of the Key Parameter in Code Reviews:  Individuation of Defects}
 %code review in software development in cloud-based system }
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \author{Dorealda Dalipaj\inst{1}}
 % Use \authorrunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
-\institute{University Rey Juan Carlos, Madrid.
+\institute{Universidad Rey Juan Carlos, Madrid \\
 \texttt{dorealda.dalipaj@urjc.es}}
 %
 % Use the package "url.sty" to avoid
@@ -48,24 +48,22 @@
 %
 \maketitle
 
-\textbf{\textit{Abstract -}} Code review is a well-established and cost-effective way to find defects, employed both in industrial and open source contexts. 
-Today code review is tool assisted, like from Bug tracking systems that were developed to guide maintenance activities of 
-software developers. Thus today it results time efficient and more lightweight compared to the early software inspections 
-performed in the 80s. Finding and removing defects close to their point of injection remains the main motivation and a key parameter
-for review. 
-However, different studies (\cite{contribution1}, \cite{contribution9}, \cite{contribution20} ) had shown that code review is not performing as expected. 
-They argued that the performance of code review 
-was quite low and that the actual outcome of code review in finding errors was less than expected. Furthermore, another study 
-\cite{contribution10}
-argues that, as many software programs 
-rely on bug reports to correct software errors in maintenance activities, developers spend much time to identify these bug reports. 
-Thus, the aim of this study is to bring evidence by quantifying the performance of the very key parameter of code review: individuation of bugs.
-We focus our case study on a cloud computing software, Open Stack \cite{contribution11}. 
-A developer can contribute to its source code repository using the Launchpad Bugtracking \cite{contribution12} and 
-Gerrit Code Review \cite{contribution13}. First, from Launchpad, we individuate the bug reports that are actually describing a defect, 
-and extracted the needed information to bring statistical evidence on the number of defects that are individuated in Open Stack through the 
+\textbf{\textit{Abstract -}} Code review is a well-established way to find defects, employed both in industrial and open source contexts, known to be cost-effective. 
+Nowadays code review is tool assisted, in general by means of bug tracking systems that were developed to guide maintenance activities of 
+software developers. Finding and removing defects close to their point of injection remains the main motivation and a key parameter
+for review. Many developers hint that this practice results to be time efficient and more lightweight compared to the early software inspections 
+performed in the 1980s. 
+However, different studies (\cite{contribution1},~\cite{contribution9},~\cite{contribution20}) have shown that code review is not performing as expected. 
+They argue that the performance of code review 
+is low and that the actual outcome of code reviews in finding errors is less than the expected one. Furthermore, another study~\cite{contribution10} argues that many software programs 
+rely on bug reports to correct software errors during maintenance, making developers spend too much time in managing and handling these bug reports. 
+The aim of this study is to bring evidence by quantifying the performance of the very key parameter of code review: individuation of bugs.
+We focus our case study on a cloud computing software, OpenStack~\cite{contribution11}. 
+A developer can contribute to its source code repository using the Launchpad Bugtracking~\cite{contribution12} and the Gerrit Code Review~\cite{contribution13} tools.
+The process by which we want to proceed is as follows. First, from Launchpad, we individuate the bug reports that are actually describing a defect, 
+and extract the needed information to bring statistical evidence on the number of defects that are individuated in OpenStack through the 
 years. Second, we compare the first results to the total number of issues reported, grouped by their different types, 
-to have proof of the rate at which the defects are discovered. And last we bring empirical evidence on the effort spent by developers, 
+to have a proof of the rate at which the defects are discovered. And last we bring empirical evidence on the effort spent by developers, 
 by means of time, to carry out the defect individuation process.
 
 \section{Introduction}
@@ -76,37 +74,36 @@ by means of time, to carry out the defect individuation process.
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
 
-Code review, sometimes referred as peer review, is an activity in which people, other than the author of a software deliverable, 
+Code review, sometimes referred as peer review, is an activity in which people, other than the author of a code snippet, 
 examine it for defects and improvement opportunities.
-Code review is characterized \textit{ as a systematic approach to examine a product in detail, 
-using a predefined sequence of steps to determine if the product is fit for its intended use}
-\cite{contribution14}. It is considered one of the most powerful software quality tools available. 
+Code review is characterized \textit{as a systematic approach to examine a product in detail, 
+using a predefined sequence of steps to determine if the product is fit for its intended use}~\cite{contribution14}. It is considered one of the most powerful software quality tools available. 
 
 
-There have been different ways of performing defect detenction since its beginning up to nowadays. The formal review or inspection 
-according to Fanagan \cite{contribution15} approach required the conduction of an inspection meeting for actually finding of 
-defects. Different controlled experiments showed that there were no significant differeneces in the total number of defects found 
-when comparing meeting-based with meeting-less-based inspections \cite{contribution17}, \cite{contribution18}. Other 
-studies \cite{contribution19} were carried out and proved that more defects were identified with meeting-less-based approaches. 
-As a result a wide range of mechanisms and techniques of code review were developed. From static analysis 
-\cite{contribution3} \cite{contribution4} \cite{contribution5}, which examines the code in 
-the absence of input data and without running the code and is tool based, to modern code review 
-\cite{contribution6} \cite{contribution7} \cite{contribution8}, which aligning with the distributed 
+There have been different ways of performing defect detection since its beginning up to nowadays. The formal review or inspection 
+according to Fanagan's approach~\cite{contribution15} required the conduction of an inspection meeting for actually finding defects. Different controlled experiments showed that there were no significant differences in the total number of defects found 
+when comparing meeting-based with meetingless-based inspections~\cite{contribution17, contribution18}. Other 
+studies~\cite{contribution19} were carried out and proved that more defects were identified with meetingless-based approaches. 
+As a result a wide range of mechanisms and techniques of code review were developed. From static analysis~\cite{contribution3, contribution4, contribution5}, which examines the code in 
+the absence of input data and without running the code and is tool based, to modern code review~ 
+\cite{contribution6. contribution7, contribution8}, which aligned with the distributed 
 nature of many projects is asynchronous and frequently supporting geographically distributed reviewers. Because of their many uses 
 and benefits, code reviews are a standard part of the modern software engineering workflow.
-\\ \\
-Although it is generally accepted that quality in software remains a challenge due to defects presence. A major quality issue with 
-software is that defects are a byproduct of the complex development process and the ability to develop defect free software 
+
+It is generally accepted that quality in software remains a challenge due to defects presence. A major quality issue with 
+software is that defects are a byproduct of the complex development process and the ability to develop software free of defects 
 remains a big challenge for the software community. 
-It is possible to improve the quality of software product by injecting fewer defects or by identifying and 
-removing defects injected. It is also generally accepted that performance of software review is affected by several factors of the 
-defect detection process. Code review performance is associated with the effort spent to carry out the process and the number of 
+It is possible to improve the quality of a software product by injecting fewer defects or by identifying and 
+removing defects injected. 
+
+It is also generally accepted that the performance of software reviews is affected by several factors of the 
+defect detection process. So, code review performance is associated with the effort spent to carry out the process and the number of 
 defects found. 
-\\ \\A wide set of empirical studies and new approaches have been proposed to understand and improve the review process since it 
-was introduced by Fagan \cite{contribution15}. Sources of process variability range from structure (how steps of the inspection 
-are organized), inspection inputs(reviewer ability and product quality), 
+
+A wide set of empirical studies and new approaches have been proposed to understand and improve the review process since it 
+was introduced by Fagan~\cite{contribution15}. Sources of process variability range from structure (how the inspection is organized in several steps), inspection inputs (reviewer ability and product quality), 
 techniques applied to defect identification that define how each step is carried out), 
-context and tool support \cite{contribution16}. Most empirical studies try to assess the impact of specific process settings on performance. 
+context and tool support~\cite{contribution16}. Most empirical studies try to assess the impact of specific process settings on performance. 
 A controlled experiment by Johnson and Tjahjono \cite{contribution17} showed that \textit{total defects identified, effort spent in the 
 process, false positive defects, duplicates} are fundamental variables to analyse when controlling the performance of code review. 
 
@@ -125,44 +122,50 @@ process, false positive defects, duplicates} are fundamental variables to analys
 %abstract, without executing them or considering a specific input. It has become fairly clear that static analysis
 %tools can find important defects in software.
 
-Although code review is used in software engineering primarily for finding defects, severeal studies argue that they often 
+Although code review is used in software engineering primarily for finding defects, several studies argue that they often 
 do not find functionality defects.
-\\ \\
-Microsoft develops software in diverse domains, from high end server enterprise data management solutions such
-as SQL Server to mobile phone applications and smart phone apps to search engines. Over the past two years, 
-a common tool for code review, Code Flow, has achieved wide-spread adoption at Microsoft. 
-The functionality of CodeFlow is similar to other review tools such Mondrian \cite{contribution6} (adopted at Google), Phabricator 
-\cite{contribution7} (adopted at Facebook) or open-source Gerrit \cite{contribution8}.
-Two studies where conducted at Microsoft on code review process.
 
-The first study (\cite{contribution9}) took place with professional developers, testers, and managers at Microsoft. 
+Microsoft develops software in diverse domains, from high-end server enterprise data management solutions such
+as SQL Server to mobile phone applications and smart phone apps to search engines. Over the past two years, 
+a common tool for code review, \texttt{CodeFlow}, has achieved wide-spread adoption at Microsoft. 
+The functionality of \texttt{CodeFlow} is similar to other review tools such \texttt{Mondrian}~ \cite{contribution6} (adopted at Google), \texttt{Phabricator}~\cite{contribution7} (adopted at Facebook) or the open-source \texttt{Gerrit}~\cite{contribution8}.
+
+Two studies have been conducted at Microsoft on code review process. The first study took place with professional developers, testers, and managers at Microsoft~\cite{contribution9}. 
 The results show that, although the top motivation driving code reviews is finding defects, the practice and the 
 actual outcomes are less about finding errors than expected: Defect related comments comprise a small proportion, only 14\%, 
 and mainly cover small logical low-level issues.
-The second study conducted at Microsoft \cite{contribution20} stated that code review do not find bugs. They found that only about 
-15\% of the comments provided by reviewers indicate a possible defect, much less functionallity issues that should block a 
+The second study conducted at Microsoft~\cite{contribution20} stated that code review do not find bugs. They found that only about 
+15\% of the comments provided by reviewers indicate a possible defect, much less functionality issues that should block a 
 code submission. 
-\\ \\
-Another empirical study on the effectiveness of security code review \cite{contribution1}, conducted an experiment on 30 developers. They 
+
+Another empirical study on the effectiveness of security code review~\cite{contribution1}, conducted an experiment on 30 developers. They 
 conducted manual code review of a small web application. The web application supplied to the developers had seven known vulnerabilities. 
 Their findings concluded that none of the subjects found all confirmed vulnerabilities (they were able to find only 5 out of 7) 
 and that reports of false vulnerabilities were significantly correlated with reports of valid vulnerabilities.
-\\ \\
-A different experiment \cite{contribution10} argued that in large scale software programs developers spend much time to 
-identify the bug reports (mainly due to the excessive number of duplicate bug reports).
-\\ \\
+
+A different experiment argued that in large scale software programs developers spend much time to 
+identify the bug reports (mainly due to the excessive number of duplicate bug reports)~\cite{contribution10}.
+
 Keeping in mind the above discussion we did this questions:
-\\
-1. Are all the code review tools performing a lame number of defects detection?
-With the abundance of data coming from the engineering systems and having a diverse set of projects to observe 
-\cite{contribution12} \cite{contribution13}, we ask 
+
+\begin{enumerate}
+  \item Are all the code review tools performing a lame number of defects detection?
+With the abundance of data coming from the engineering systems and having a diverse set of projects to observe~\cite{contribution12, contribution13}, we ask 
 if there is any code review providing more value than the others?
-\\
-2. What is the actual amount of time that developers take in individuating defects?
-\\
-\\
-\\
+
+  \item What is the actual amount of time that developers take in individuating defects?
+\end{enumerate}
+
+
 \textit{Work in Progress...}
+
+TODO:
+
+\begin{itemize}
+  \item What are the next steps in your research?
+  \item What is the intended impact of your research?
+  \item What are the most important challenges and threats of your research?
+\end{itemize}
 
 %\subsection{Subsection Heading}
 %\label{sec:3}
