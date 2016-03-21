@@ -53,20 +53,24 @@
 for review. However, different studies have shown that code review is not performing as expected. They argue that the performance of 
 code review is low and that the actual outcome of code reviews in finding errors is less than the expected one. 
 Furthermore, another study argues that as many software programs rely on issue reports to correct software errors during maintenance, 
-developers spend too much time in identifying the bug reports due to duplicated reports.
+developers spend too much time in identifying the bug
+\footnote{In this paper bug and defect refer to the same object.} 
+reports
+\footnote{In this paper bug report, report and ticket refer to the same object.} 
+due to duplicated reports.
 
 The aim of this study is to bring evidence by quantifying the time spent by developers to identify the bugs reports, the time
 spent by them to carry out the reviewing process and to bring evidence by quantifying the performance of the very key 
 parameter of code review - individuation of bugs.
 
-With the abundance of data and having a diverse set of projects to observe, our case study is focused on the code review process 
-of Open Stack, a cloud computing software. 
+With the abundance of data and having a diverse set of projects to observe, our case study is focused on 
+Open Stack, a cloud computing software. 
 Our focus is to have a proof of the rate at which the defects are discovered 
 % to what extent developers are actually individuating and fixing bugs 
 %while they are applying changes in the code finding 
-thus answering if there is any code review providing more value than the others. 
+thus answering if is there any code review providing more value than the others. 
 
-Quantification of the time for identifying the bugs reports, the review time and the number of bugs fixed during this process, 
+Quantification of the time for identifying bug reports, the review time and the number of bugs fixed during this process, 
 % The identification of the bugs report time, review time and the number of bugs fixed during this process, 
 are the most fundamental parameters for characterization of performance of the code review and the most important metrics having 
 a positive increasing relation with the benefits of this process.
@@ -162,10 +166,11 @@ process, false positive defects, duplicates} are fundamental variables to analys
 %abstract, without executing them or considering a specific input. It has become fairly clear that static analysis
 %tools can find important defects in software.
 
-Although code review is used in software engineering primarily for finding defects, several studies argue that they often 
-do not find functionality defects.
+Although code review is used in software engineering primarily for finding defects, several studies argue that 
+%they often do not find functionality defects 
+the outcome of code reviews in finding errors is less than expected.
 
-Over the past two years, a common tool for code review, \texttt{Code Flow}, has achieved wide-spread adoption at Microsoft. 
+Over the past years, a common tool for code review, \texttt{Code Flow}, has achieved wide-spread adoption at Microsoft. 
 The functionality of \texttt{CodeFlow} is similar to other review tools such \texttt{Mondrian} \cite{contribution6} 
 (adopted at Google), \texttt{Phabricator} 
 \cite{contribution7} (adopted at Facebook) or open-source \texttt{Gerrit} \cite{contribution8}.
@@ -193,7 +198,7 @@ Keeping in mind the above discussion we did these questions:
 \begin{itemize}
  \item RQ 1. \textit{What amount of time do developers need to identify bug reports?}
  \item RQ 2. \textit{What is the actual amount of time that developers take in carrying out the review process?}
- \item RQ 3. \textit{Are all the code review tools performing with a low number of defects detection?}
+ \item RQ 3. \textit{Are all the code review tools performing the same in detecting a low number of defects?}
 \end{itemize}
 
 
@@ -201,10 +206,11 @@ With the abundance of data coming from the engineering systems and having a dive
 \cite{contribution12, contribution13}, we ask 
 if there is any code review providing more value than the others?
 
-To provide answer for the above question we perform a large empirical study on the actual 213 active projects of Open Stack.
-For the purpose of our study we analyse them divided by 9 projects that are the core of Open Stack (see \ref{sec:3}), and 
-group the rest of them as Other Projects category.  
-We choose Open Stack as it is a large project that have adopted code reviews on a large 
+To provide answer for the above question we are performing a large empirical study on the actual 213 active projects of Open Stack.
+For the purpose of our study, we analyse them divided by the 9 core projects of Open Stack (see \ref{sec:3}), and 
+group the rest in the Other Projects category. 
+
+We choose Open Stack because it is a large project that have adopted code reviews on a large 
 scale and have a reasonable traceability between commits, review and defects reports.
 It uses Launchpad, a bugtracking system for tracking the issue reports, and Gerrit, a lightweight code review tool. Additionally, 
 being an open source cloud computing software, it is backed by a global collaboration of developers. It has other flavors worthy of 
@@ -212,8 +218,8 @@ additional benefits which influences the outcome, and can bring a different pict
 \cite{contribution9}, \cite{contribution20} and \cite{contribution10}. 
 
 In the remainder of this paper, we first describe the necessary background notions for our work (section 3). Next, we describe the 
-case study setup (section 4), then present the results of the research questions (section 5). After discussion and threats to 
-validity (section 6 and section 7), we discuss future work (section 8) and we finish with conclusions (section 9).
+case study setup (section 4), then present the results of the research questions (section 5). After threats to 
+validity and future work (section 6 and section 7), we discuss conclusions (section 8) and we finish with acknowledgements (section 9).
 
 \section{Background}
 \label{sec:3}
@@ -221,26 +227,23 @@ validity (section 6 and section 7), we discuss future work (section 8) and we fi
 This section provides background information about the bugtracking and code review environments of Open Stack and the 
 tools for obtaining data from their repositories.
 
-Openstack is a free and open source set of software tools for building and managing cloud computing platforms. 
-
+Open Stack is a free and open source set of software tools for building and managing cloud computing platforms. 
 %It is being employed by 263 users in different industries including: Web/ SaaS/ eCommerce, Information Technology, 
 %Healthcare, Cloud Hosting/ MSP/ Telco, Film/ Media/ Gaming, Manifacturing/ Industrial, Retail, Finance ecc.
-
 %The OpenStack Foundation, which oversees both development and community-building around the project, 
 %serves more than 30,000 Individual Members from over 170 countries around the world. It is supported by 
 %26 platinum and gold members (including AT\&T, Ubuntu, HPE, IBM, Intel, Red Hat, Rackspace, SUSE, Cisco, Dell, Ericson and many 
 %5others), 3 infrastructure donors (Rackspace, HPE, OVH Group), and 550 corporate donors and supporting organizations.
 %Backed by some of the biggest companies in software development and hosting, as well as thousands of individual community members, 
 %OpenStack is the future of cloud computing. 
-
-OpenStack is made up of many different moving parts. Because of its open nature, anyone can add additional components to OpenStack 
-to help it to meet their needs. This is whay actually in Open Stack there are 213 active projects. 
+OpenStack is made up of many different moving parts. Because of its open nature, anyone can add additional components to Open Stack 
+to help it to meet their needs. This is why, actually, in Open Stack there are 213 active projects. 
 But the OpenStack community has collaboratively identified 9 key components that are a part of 
-the "core" of OpenStack, which are distributed as a part of any OpenStack system and officially maintained by the OpenStack community: 
-Nova, Swift, Cinder, Neutron, Horizon, Keystone, Glance, Ceilometer, and Heat.
-Thus in this study we analyse the 9 core components of Open Stack and categorise the rest as Other Projects.
+the \textit{core} of OpenStack, which are distributed as a part of any OpenStack system and officially maintained by the OpenStack 
+community: Nova, Swift, Cinder, Neutron, Horizon, Keystone, Glance, Ceilometer, and Heat.
+Therefore we will expose the results grouped by the 9 core components of Open Stack and categorise the rest as Other Projects.
 
-Open Stack uses Launchpad, an issue tracking system, which is a repository used to enable
+Open Stack uses Launchpad, an issue tracking system, which is a repository that enable
 users and developers to report defects and feature requests. It allows such a reported issue to be triaged and (if  deemed
 important) assigned to team members, to discuss the issue
 with any interested team member and to track the history of
@@ -250,19 +253,22 @@ other team members. Open Stack uses a dedicated reviewing enivornment,
 Gerrit, to  review  patches  and  bug  fixes. It supports with 
 lightweight processes for reviewing code changes, i.e., 
 to decide whether a developer’s change is safe to
-integrate into the official Version Control System. During such
-lightweight  code  review,  assigned  reviewers  make  comments
+integrate into the official Version Control System (VCS). During this process, 
+assigned  reviewers  make  comments
 on a code change or ask questions that can lead to a discussion
 of  the  change  and/or  different  revisions  of  the  code  change,
 before  a  final  decision  is  made  about  the  code  change.  If
 accepted, the most recent revision of the code change can enter
-the version control system, otherwise the change is abandoned
+the VCS, otherwise the change is abandoned
 and the developer will move on to something else.  
 
-In this paper, we are interested in quantifying the time that developers need 
-to go through the code review, by measuring the time to merge a change,
-and to measure how many bugs (and possibly of what type) where fixed in the
-code changes that successfully  passed in the VCS.
+%In this paper, we are interested in quantifying:
+%\begin{itemize}
+% \item the time that developers need to identify a bug report,
+% \item the time that developers need to go through the code review process, by measuring the time needed for fixing and merging a change,
+% \item and to measure how many bugs (and possibly of what type) where fixed in the
+%code changes that successfully  passed in the VCS.
+%\end{itemize}
 
 %A developer can contribute to an OpenStack source code repository using Gerrit code review system. Since the Web interface for 
 %Gerrit uses Launchpad OpenID single sign-on to identify a developer, an account on bug tracking platform Launchpad is necessary. In 
@@ -270,7 +276,7 @@ code changes that successfully  passed in the VCS.
 %Furthermore Open Stack is among pioneers for pushing developers to explicitly link code changes to issues and reviews.
 
 To obtain the issue reports and code review data of these ecosystems, we used the data set 
-provided by Gonzalez-Barahona et al. \cite{contribution21}.  They  developed the  MetricsGrimoire tool suite to mine the repositories of
+provided by Gonzalez-Barahona et al. \cite{contribution21}.  They  developed the  MetricsGrimoire tool to mine the repositories of
 OpenStack, then store the corresponding data into a relational database. We make use of their issue
 report and code review data sets \cite{contribution22} to perform our study.
 
@@ -279,23 +285,42 @@ report and code review data sets \cite{contribution22} to perform our study.
 \label{sec:4}
 
 This section explains the methodology used to address our research questions.  
-We discuss the selection of the case study system, how we identified and the extraction of 
-bug reports, and the results that we obtained.
+In this paper, we are interested in quantifying:
+\begin{itemize}
+ \item[$\bullet$] (RQ 1) the time that developers need to identify a bug report in Launchpad,
+ \item[$\bullet$] (RQ 2) the time that developers need to go through the code review process in Gerrit,
+ %by measuring the time needed for fixing and merging a change,
+ \item[$\bullet$] (RQ 3) the bugs (and possibly of what type) that where fixed in the
+code changes that were successfully merged to the VCS.
+\end{itemize}
 
+Next we discuss the methodology applied for carrying out our study:
+\begin{enumerate}
+ \item first: the selection of the case study system,
+ \item second: how we individuate reports that are actually describing a defect from Launchpad and extracted them for measuring 
+ their identification time,
+ \item third: how we linked the issues (bug reports from Launchpad) to their review in Gerrit for measuring the time to review,
+ \item last: as this is the starting of the PhD, RQ 3 is work in progress, thus we will discuss how we intend to 
+ carry it out in Future Work (section \ref{sec:7}).
+\end{enumerate}
+
+%   \begin{list}{}{}
+%    \item[$\cdot$] prova
+%    \item[$\bullet$] prova1
+%   \end{list}
 
 \subsection{Selection of Case Study System}
-The aim of our study, to begin with, is to measure the time that the developers need to identify 
+The aim of my PhD, to begin with, is to measure the time that the developers need to identify 
 the bug reports in the bugtracking system, 
-the time they need to carry out the review, and provide quantitative evidence on these two metrics and
-on the number of bugs detected during the process. 
+the time they need to carry out the review, and provide quantitative evidence on the number of bugs detected during the process 
+of code review. 
 \\
 \\
-Our case study system choice falls on Open Stack, because for achieving our aims, we required projects with a
+Our case study system choice is Open Stack, because for achieving our aims, we required projects with a
 substantial number of commits linked to issue reports and code review. And this is 
 readily done in Open Stack.
-
-Furthermore, thanks to MetricsGrimoire tool, we can mine the repositories of Launchpad and Gerrit systematically updated.
-
+Furthermore, thanks to MetricsGrimoire tool, we can mine the repositories of Launchpad and Gerrit, which are 
+being systematically updated.
 What we need to do is to identify the issue reports classified as bugs, link them the respective review and then 
 extract the patterns we need for carring out our results.
 
@@ -305,37 +330,43 @@ extract the patterns we need for carring out our results.
 In Launchpad, besides bugs reports, the developers can work with \textit{specifications} 
 (approved design specifications for additions and changes to the project team’s code repositories) 
 and \textit{blueprints} (lightweight feature specifications).
-
-Identify which of the reports have been classified as describing bugs is not a trivial task.
+Identifying which of the reports have been classified as describing bugs is not a trivial task.
 Tickets usually are commented. Reviewers do discuss about having found a bug in a certain report or not. 
-But we saw that analysing comments of a ticket is not the most efficient way for extracting its classification, 
-because we wil not recover 100\% of the tickets.
+But, analysing the comments of a ticket is not the most efficient way for extracting its classification, 
+not only because we will not identify 100\% of the tickets but we risk false positives too.
 \\
 \\
-Manually analysing the tickets and how the Launchpad work flow treats them, we came accross a pattern 
-of the reports states with regards to confirming new bugs:
+By manual analysis of the tickets and studing the Launchpad work flow, we came accross a pattern 
+in the evolution of a report states, with regards to confirming new bugs:
 
-1. a ticket, stating a possible bug, is opened in launchpad and its status is New,
+\begin{list}{}{}
 
-2. if the problem stated in the ticket is reproduced than the bug is confirmed as genuine and the 
-ticket status passes from New to Confirmed,
-
-3. only when a bug is confirmed, the status then changes from Confirmed to In Progress and 
-an issue will be opened in gerrit.
-\\
-\\
-Thus, we automaticlly analysed the Launchpad repository searching for tickets that have a match with this pattern. 
-These are the tickets that have been classified as bug reports. Once we identify we extract them in a new repository for further 
+\item[$\space$] a) when a ticket, stating a possible bug, is opened in Launchpad, its status is setted to 
+\textit{New};
+\item[$\space$] b) if the problem described in the ticket is reproduced, the bug is confirmed as genuine and the 
+ticket status changes from \textit{New} to \textit{Confirmed};
+\item[$\space$] c) only when a bug is confirmed, the status then changes from \textit{Confirmed} to \textit{In Progress} 
+the moment when an issue is opened for review in Gerrit.
+    
+\end{list}
+Thus, we analysed the Launchpad repository searching for tickets that match with this pattern. 
+These are the tickets that have been classified as bug reports. Once identified, we extracted them in a new repository for further 
 inspection.   
 \\
 \\
-Our results showed that \/ 57720 tickets out of 88421 have been classified as bugs 
-(you can review this results in a python notebook 
+Our results showed that, in Launchpad, 57720 tickets out of 88421 have been classified as bugs 
+(you can review this results in a python notebook
 \footnote{github.com/ddalipaj/CR\_Defect\_Individuation\_Rate/blob/master/finding\_bugs.ipynb} 
-that we make availabe online). 
+that is availabe online). 
 Hence 65.3\% of the total tickets in Launchpad are bugs, and an issue for fixing has been opened for them in Gerrit. 
-At this point we were able to quantify the time that developers spend on identifying bug reports as the distance between 
-the moment when the ticket is first inserted in Launchpad up to the moment it is confirmed as a genuine bug.
+\\
+At this point we are able to quantify the time that developers spend on identifying bug reports as the 
+distance in time between 
+the moment when the ticket is first inserted in Launchpad up to the moment it is 
+\textit{Confirmed} as a genuine bug.
+\\
+You can see the results of the identification of bugs reports in Open Stack divided by the core projects, 
+the other projects, and overall Open Stack, in fig. \ref{fig:1} below.
 
 \begin{figure}[H]
 \centering
@@ -354,13 +385,19 @@ the moment when the ticket is first inserted in Launchpad up to the moment it is
 The next step is to link the tickets that we have already extracted with their respective issue in the code review system.
 To detect the links between ticket and reviews, we first referred to the name of the branch on which a code change had 
 been made, since some of them follow the naming convention "bug/989868" with "989868" a ticket identifier.
+\\
 After the extraction, we manually analysed a random number of issues and their respective tickets. We discovered 
-that some issues were matched to a ticket like a related artifact, while indeed the issue was reviewing the ticket and merging 
-not in the master branch of the project under which the defect was originated, but in another branch. 
-For quatifying the time that developers do need to carry out the review process, we must take into consideration only the 
-merges into the master branch of the project, the merges in the versions of the same project for the preservation of compatibility 
-are not elements of this metric. Thus this selection was clearly erroneus.
-We tried the other way around approach. Instead of linking reviews to tickets, we linked tickets to reviews using the information
+that some issues were matched to a ticket like a related artifact, while indeed the issue was reviewing the ticket and 
+merging the fixing in the some version of a project (in some cases the same and in others different 
+from the one under which the defect was originated). 
+The merges in the versions of the same (or even different) project for the preservation of compatibility clearly 
+are not elements for measuring the time to review.
+\\
+To quantify the time that developers do need to carry out the review process
+we must be sure take into consideration only merges into the master branch of the projects. 
+Thus this selection was clearly erroneus.
+\\
+We tried \textit{the other way around} approach. Instead of linking reviews to tickets, we linked tickets to reviews using the information
 that we find in the comments of the tickets. Whenever a review recieves a proposal for a fix, or a merge for a fix, it is reported in the 
 comments of the respective ticket. 
 Precisely, a merge comment looks like the following:  
@@ -378,21 +415,34 @@ Branch:    master ...
 \\
 \\
 Where the first line, clearly, provide us with the link to the issue in Gerrit. 
-
-The first problem that arises in analysing the comments is that, some of them for some ticket, are a summary of some commit history. 
+\\
+The first problem that arises in analysing the comments is that, for some ticket, they are a summary of some commit history. 
 Therefore, in these cases, we find more than a match with the pattern we are looking for within the body of 
 the comment, while the commit itself is not a merge in the master branch of the project that orginated the ticket, 
 consequently not the correct result. 
-
-However there is a fixed format of the comments that report a merge, which is the one in the example above.
-The information related to the review is stated at the very begining of the 
-comment and manually analysing the tickets in Launchpad we have seen that they are found in the first 6 rows.
-
+\\
+However there is a fixed format of the comments that report a merge (which is the one you can see in the example above).
+In this format, the information related to the review is stated at the very begining of the 
+comment. Manually analysing the tickets in Launchpad, we have seen that they are found in the first 6 rows of the comment.
+\\
 Thus the first step is trunking of the comments, so that we extract just the first 6 lines from every one of them. 
-Doing this assures the identifying of the right review. We can view the steps of this process in a python notebook
+Now we are sure we will identify the right review. 
+\\
+You can review the steps of this process in a python notebook
 \footnote{https://github.com/ddalipaj/Analysis\_Tickets\_Issues/blob/master/master\_merge.ipynb}
-that is available online. The table below shows the number of tickets and issues that we were able to link with its 
-counterpart.
+that is available online. 
+\\
+At this point we are able to quantify the time to review in OpenStack as the distance in time between the first patch is 
+uploaded in Gerrit up to when a fix change is merged to the code base.
+\\
+The table below (fig. \ref{fig:2}) shows, on the left, the number and percentage of tickets from Launchpad linked with the issues 
+in Gerrit that are reviewing them, and on the right, the number and percentage of issues from Gerrit linked with the tickets in 
+Launchpad that they are reviewing. 
+\\
+Our approach was able to link 90.2\% of the tickets from Lauchpad to their corresponding issue, 
+and 30.2\% of the issues from Gerrit to the corresponding ticket (the reason behind the results in Gerrit 
+is that we are not selecting every merge, but only the ones 
+into the master branches).
 
 \begin{figure}[H]
 \centering
@@ -400,21 +450,31 @@ counterpart.
 \includegraphics[width=1.0\textwidth,natwidth=778,natheight=326]{t-i.png}
 
 \caption{The percentages of tickets and issues linked with its counterparts in OS - From July, 2010 - January, 2016.}
-\label{fig:2}       % Give a unique label
+\label{fig:2}
 \end{figure}
-
-At this point we are able to carry out the time to review in OpenStack as the distance between the first patch is 
-uploaded to Gerrit up to when a fix change is merged to the code base.
 
 \section{Case Study Preliminary Results}
 \label{sec:5}
 
+In this section we expose the results that we have obtained for the RQ 1 and 2. As we mentioned before, this is 
+the initial phase of the PhD, thus RQ 3 is currently work in progress.
+\\
+\\
 RQ 1. What amount of time do developers need to identify bug reports?
-
-We computed the time to identify bug reports as discussed in \ref{sec:4.1}. 
-Then, we calculated the median effect size across all Open Stack projects in order to globally rank
-the metrics from most extreme effect size, and last the quantiles. The results are shown in the table 
-below:
+\\
+\\
+We computed the time for identifying the bug reports as discussed in \ref{sec:4.1}. 
+\\
+Afterwards, we calculated the median effect size across all Open Stack projects in order to globally rank
+the metrics from most extreme effect size, and last the quantiles. 
+\\
+\\
+We discoverd that the median time for identifying a bug report in Open Stack (Launchpad) is 1.96 hours. Additionally, we 
+can say that the first quartile is less than 5 minutes, the second quartile is 1.96 hours, the third quartile is 
+71.6 hours (less than 3 days), and the interquartile range (IQR) is 71.4 hours (less than 3 days).  
+\\
+\\
+The results are shown in the table below:
 
 \begin{figure}[H]
 \centering
@@ -422,38 +482,70 @@ below:
 \includegraphics[width=1.0\textwidth,natwidth=779,natheight=129]{t-c.png}
 
 \caption{The median time to classify a bug report accross all projects in Open Stack - From July, 2010 - January, 2016.}
-\label{fig:3}       % Give a unique label
+\label{fig:3}       
 \end{figure}
 
 RQ 2. What is the actual amount of time that developers take in carrying out the review process?
-
+\\
+\\
 We computed the time to carry out the review process as discussed in \ref{sec:4.2}.
-Again, we calculated the median accross all Open Stack projects. The results are shown in the table below:
+\\
+Again, we calculated the median accross all Open Stack projects. 
+\\
+\\
+We discovered that the median time for reviewing is 52.17 hours (2.2 days). Additionally, we can say that the 
+first quartile is 8.21 hours (0.3 days), 
+the second quartile is 52.17 hours (2.2 days), the third quartile is 213.75 hours (less than 9 days), 
+and the IQR is 205.54 hours (8.6 days).
+\\
+\\
+The results are shown in the table below:
 
 \begin{figure}[H]
 \centering
 
 \includegraphics[width=1.0\textwidth,natwidth=779,natheight=129]{t-r1.png}
 
-\caption{The median time to classify a bug report accross all projects in Open Stack - From July, 2010 - January, 2016.}
-\label{fig:4}       % Give a unique label
+\caption{The median time to carry out the review process accross all projects in Open Stack - From July, 2010 - January, 2016.}
+\label{fig:4} 
 \end{figure}
 
-RQ 3. Are all the code review tools performing with a low number of defects detection?
+The next table (Fig. \ref{fig:5}) exposes the median of the time to review during various years (from 2011 up to 2015) 
+for the 9 core projects of Open Stack, the 
+Other Projects category of Open Stack, and over all Open Stack (last row). Additionally the last column exposes the median 
+of the time to review over all the history (from July, 2010 to January, 2016) of the above mentioned categories.
+\\
+\\
+We can conclude from the results that in Openstack and the Other Projects category the time to merge is under control.
+We can not state the same for some of the core projects. See the trend of the median time in Nova, Cinder, Neutron, Keystone 
+and Glance projects.
 
-This is a preliminary step in the phd. The third research query is the topic of the next future, thus work in progress.
-We can state that currently we are working with the elements of the review process that we dispose, that are 
-the comments and the commit 
+\begin{figure}[H]
+\centering
+
+\includegraphics[width=1.0\textwidth,natwidth=781,natheight=381]{gerrit.png}
+
+\caption{The median time to carry out the review process in Open Stack.}
+\label{fig:5}       % Give a unique label
+\end{figure}
+
+RQ 3. How many bugs (and possibly of what type) where fixed during code review?
+\\
+\\
+The RQ 3 is the topic of the next work in progress.
+We are currently working with two elements of the review process that we dispose, the comments and the commit 
 analysing both the human discussion and the changes in the code. 
 
 \section{Threats to Validity}
 \label{sec:6}
 
 Threats to internal validity concern confounding factors that might influence the results. There
-are likely unknown factors that impact defect-detection that we have not measured yet.
+are likely unknown factors that impact defect-detection that we have not analysed and measured yet.
+\\
+\\
 Due to the elaborate filtering that we performed in order to link two repositories (bug repository, 
 and code review), the  heuristics  used  to  find  the
-links  between  the  repositories  are  not  100\%  accurate,
+relations  between  them  are  not  100\%  accurate,
 however  we  used  the  state-of-the-practice  linking  algorithms
 at  our  disposal.  Recent  features  in  Gerrit  show  that  clean
 traceability  between  version  control  and  review  repositories
@@ -463,27 +555,39 @@ for future of this study will only grow in volume.
 \section{Future Work}
 \label{sec:7} 
 
-Our immediatly future work is to quantify the rate at which bugs are discovered during the code review process. 
-In our study we focus on the time for identifying bug reports, for carrying out the review process and the number
-of defects identified during review. But there are several other metrics that influences and characterize the 
-performance of code review process that we would like to investigate.
+Our immediatly future work is to quantify the rate at which bugs are discovered during the code review process.
+We are analysing comments and commits not only to identify the changes in the code that are actually fixing bugs, 
+but also to find patterns that we can use to automate the process of individuating as precise as possible 
+the number of bugs solved during a review. Finally, we can build a tool for monitoring the 
+lower and upper bounds of bugs fixed during code review along with other metrics of performance.
+\\
+There are several other metrics that characterize the 
+performance of code review that we would like to investigate. One of them is what influences the time to review 
+(fig. \ref{fig:5}).
 
 \section{Conclusion}
 \label{sec:8} 
 
-In this paper we emprirically studied the impact of the time for identifying the bug reports, the time to carry out
-the review process and are conducting a study on quantifying the number of bugs fixed during a code review. 
+In this paper we emprirically studied the impact of the time for identifying the bug reports and the time to carry out
+the review process. We are conducting a study on quantifying the number of bugs fixed during a code review. 
 From the preliminary results that we bring into evidence and the future results that we hope to have, we believe that 
 our study will open up a variety of research opportunities to continue investigating the impact of collaborative 
-characteristics on performance assurance.   
+characteristics on performance assurance in code review.   
 
 \section{Aknowledgement}
 
-This study is funded under SENECA EID project, funded under Marie-Skłodowska Curie Actions.
+We would like to thank the SENECA EID project, which is funding this research under Marie-Skłodowska Curie Actions.
 \\
+\\
+\\
+\\
+\\
+\\
+\textbf{NOTE} 
 \\
 \\
 The preliminary results of this study can be found in three python notebook available online:
+\\
 \\
 1. https://github.com/ddalipaj/CR\_Defects\_Individuation\_Rate/blob/master/
 \\
